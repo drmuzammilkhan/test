@@ -1,36 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 Sites</title>
+    <title>Quaidians Literary Society</title>
+    <link rel="icon" type="image/x-icon" href="qls icon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+        body {
+            background: url("042-symphony.png");
+            background-attachment: scroll;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5d7ce0;
+            font-size: 36px;
+        }
+
+        .progress-bar-wrapper {
+            max-width: 800px;
+            background: #d2d0d6;
+        }
+
+        .progress-bar {
+            background: #5d7ce0;
+            height: 10px;
+            width: 0px;
+        }
+
+        #content0 {
+            margin-top: 10px;
+            padding: 5px 10px;
+            color: black;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: 'Varela Round', sans-serif;
+            outline: none;
+            /*to remove bluw glow in chrome*/
+            font-size: 24px;
+            margin-left: 0%;
+        }
+
+        #content {
+            margin-top: 10px;
+            padding: 5px 10px;
+            color: black;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: 'Varela Round', sans-serif;
+            outline: none;
+            /*to remove bluw glow in chrome*/
+            font-size: 24px;
+            margin-left: 40%;
+        }
+
+        .load-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: 2px solid #ffffffce;
+            border-radius: 2px;
+            background: #5d7ce0;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: 'Varela Round', sans-serif;
+            outline: none;
+            /*to remove bluw glow in chrome*/
+            font-size: 36px;
+            margin-left: 40%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.load-button', async function () {
+                var width = parseInt($('.progress-bar').css('width'));
+                var widthWrapper = parseInt($('.progress-bar-wrapper').css('width'));
+                $('.load-button').hide();
+                for (i = 0; i <= widthWrapper; i++) {
+                    $('.progress-bar').css('width', i);
+                    var width = parseInt($('.progress-bar').css('width'));
+                    $('#content0').text("Hold on, Website brewing in progress...");
+                    $('#content').text(parseInt(width / widthWrapper * 100) + "%");
+                    const result = await myloader();
+                }
+                $('#content0').text("Congratulations...! 🎉🎉🎉 Website published. Redirecting...");
+                window.location.replace("https://www.qls.qamc.edu.pk")
+            })
+        });
+
+        //this function will call after every 10 mili sec
+        function myloader() {
+            return new Promise((resolve, reject) => {
+                let y = 0;
+                //$('.load-button').hide();
+                //var width = parseInt($('.progress-bar').css('width'));
+                //var widthWrapper = parseInt($('.progress-bar-wrapper').css('width'));
+                //$('#content0').text(widthWrapper);
+                setTimeout(() => {
+                    for (j = 0; j <= 100; j++) {
+                        //$('.progress-bar').css('width', i);
+                        //var width = parseInt($('.progress-bar').css('width'));
+                        //$('#content0').text("Hold on, Website brewing in progress...");
+                        //$('#content').text(parseInt(width / widthWrapper * 100) + "%");
+                        y++;
+                    }
+
+
+                    //if (width <= widthWrapper) {
+                    //    $('.progress-bar').css('width', width);
+                    //    setTimeout("myloader()", 20); //this should be in if condition
+                    //    $('#content0').text("Hold on, Website brewing in progress...");
+                    //    $('#content').text(parseInt(width / widthWrapper * 100) + "%");
+                    //}
+                    //else {
+                    //    $('.progress-bar').css('width', 0);
+                    //}
+                    resolve(y)
+                }, 20)
+                //$('#content0').text("Website published. Redirecting...");
+                //window.location.replace("https://www.qls.qamc.edu.pk")
+            })
+        }
+
+
+    </script>
 </head>
+
+
+
 <body>
-    
-    <header>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-        </ul>
-    </header>
-
-    <main>
-        <section>
-            <a href="https://twitter.com" target="_blank"> Open twitter</a>
-            <a href="https://Facebook.com" target="_blank"> Open Facebook</a>
-            <a href="https://Instagram.com" target="_blank"> Open Instagram</a>
-            <a href="https://Youtube.com" target="_blank"> Open Youtube</a>
-            <a href="https://CodewithHarry.com" target="_blank"> Open CodewithHarry</a>
-        </section>
-        <section></section>
-            <aside>
-                <div></div>
-            </aside>
-    </main>
-
-    <footer>
-
-    </footer>
+    <div class="container">
+        <h1>Click the button below to Publish website.</h1>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar"></div>
+        </div>
+        <div id="content0"></div>
+        <div id="content"></div>
+        <button class="load-button">Publish</button>
+    </div>
 </body>
+
 </html>
